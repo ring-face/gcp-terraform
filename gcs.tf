@@ -7,7 +7,7 @@ resource "google_storage_bucket" "ringface_data_bucket" {
 
 resource "google_storage_bucket_iam_binding" "bucket_iam_binding" {
   bucket = google_storage_bucket.ringface_data_bucket.id
-  role   = "roles/storage.objectViewer"
+  role   = "roles/storage.objectUser"
 
   members = [
     "serviceAccount:${google_service_account.connector_sa.email}",

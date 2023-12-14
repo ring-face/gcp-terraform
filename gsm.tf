@@ -8,10 +8,8 @@ resource "google_secret_manager_secret" "ring_auth_secret" {
 resource "google_secret_manager_secret_version" "ring_auth_secret_version" {
   secret = google_secret_manager_secret.ring_auth_secret.id
 
-  secret_data = <<EOF
-  {
-  }
-  EOF
+  secret_data = file("${path.module}/oauth-authorization.json")
+
 }
 
 resource "google_secret_manager_secret_iam_binding" "secret_accessor" {
