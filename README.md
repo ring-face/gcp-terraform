@@ -19,3 +19,6 @@ data_bucket_name = "ringface_data_bucket"
 Initialise terraform by `terraform init`
 
 At this point you can create all the GCP resources by executing `terraform apply`
+
+## LB and IAP
+Set up IAP and Load balancing the manual step of creating the a-record DNS entry is reqired. This will ensure, that the load balancer, that is created, can expose a valid GCP managed HTTPS certificate. The IP address of the static global address is visible in the cloud console.

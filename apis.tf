@@ -21,6 +21,8 @@ resource "google_project_service" "services" {
     "storage-api.googleapis.com",
     "storage-component.googleapis.com",
     "storage.googleapis.com",
+    "iap.googleapis.com",
+    "compute.googleapis.com",
   ])
   project = var.project_id
   service = each.value
