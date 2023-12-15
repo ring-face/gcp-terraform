@@ -22,6 +22,12 @@ variable "dns-to-global-ip" {
   description = "the FQDN that points to the IP address created in this TF"
 }
 
+variable "iap-members-connector"{
+  description = "List of members to have access to the IAP-secured function of the connector"
+  type        = list(string)
+  default     = []
+}
+
 # variable "ssl_certificate" {
 #   description = "the SSL certificate exposed to the interenet"
 # }
