@@ -11,5 +11,6 @@ resource "google_storage_bucket_iam_binding" "bucket_iam_binding" {
 
   members = [
     "serviceAccount:${google_service_account.connector_sa.email}",
+    "serviceAccount:${google_service_account.classifier_sa.email}",
   ]
 }
