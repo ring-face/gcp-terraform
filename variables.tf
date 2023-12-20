@@ -18,6 +18,18 @@ variable "cloud_run_connector"{
   description = "the CR that maps to the function of the downloader"
 }
 
+variable "download_ring_video_function"{
+  description = "The name of the download function of the connector"
+}
+
+variable "fit_function"{
+  description = "The name of the fit function of the classifier"
+}
+
+variable "recognition_function"{
+  description = "The name of the recognition function of the classifier"
+}
+
 variable "dns-to-global-ip" {
   description = "the FQDN that points to the IP address created in this TF"
 }
