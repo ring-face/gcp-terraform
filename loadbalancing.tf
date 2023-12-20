@@ -37,6 +37,25 @@ resource "google_compute_backend_service" "fit_backend_service" {
   }
 }
 
+resource "google_compute_region_network_endpoint_group" "recognition_neg" {
+  name                  = "${var.project_id}-neg-recognition"
+  network_endpoint_type = "SERVERLESS"
+  region                = "europe-west3"
+  cloud_function {
+    function = var.recognition_function
+  }
+}
+
+resource "google_compute_backend_service" "recognition_backend_service" {
+  name                  = "${var.project_id}-backend-service-recognition"
+  protocol              = "HTTPS"
+  load_balancing_scheme = "EXTERNAL"
+  timeout_sec           = 30
+  backend {
+    group = google_compute_region_network_endpoint_group.recognition_neg.id
+  }
+}
+
 resource "google_compute_region_network_endpoint_group" "ringface_neg" {
   name                  = "${var.project_id}-neg"
   network_endpoint_type = "SERVERLESS"
@@ -76,6 +95,11 @@ resource "google_compute_url_map" "ringface_url_map" {
     path_rule {
       paths   = ["/fit"]
       service = google_compute_backend_service.fit_backend_service.id
+    }
+
+    path_rule {
+      paths   = ["/recognition"]
+      service = google_compute_backend_service.recognition_backend_service.id
     }
   }
 }

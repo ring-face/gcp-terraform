@@ -26,6 +26,10 @@ variable "fit_function"{
   description = "The name of the fit function of the classifier"
 }
 
+variable "recognition_function"{
+  description = "The name of the recognition function of the classifier"
+}
+
 variable "dns-to-global-ip" {
   description = "the FQDN that points to the IP address created in this TF"
 }
